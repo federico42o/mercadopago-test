@@ -83,6 +83,8 @@ public class PreferenceServiceImpl implements IPreferenceService{
 		PayerDTO payerDto = dto.getPayer();
 		PreferencePayerRequest payer = 
 				PreferencePayerRequest.builder()
+				.name(payerDto.getName())
+				.surname(payerDto.getLastName())
 				.address(AddressRequest.builder()
 						.streetName(payerDto.getAddress().getStreetName())
 						.streetNumber(payerDto.getAddress().getStreetNumber())
