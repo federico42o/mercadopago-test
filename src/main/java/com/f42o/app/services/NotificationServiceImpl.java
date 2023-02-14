@@ -13,9 +13,17 @@ import com.mercadopago.MercadoPagoConfig;
 @Service
 public class NotificationServiceImpl implements INotificationService{
 	private static final Logger log = LoggerFactory.getLogger(NotificationServiceImpl.class);
-
+	
+	@Value("${mercadolibre.config.accessToken}")
+	private String AccessToken;
+	@Value("${mercadolibre.config.integratorId}")
+	private String integratorId;
+	
 	@Override
 	public void getNotification(NotificationDTO dto) throws JsonProcessingException {
+		
+		MercadoPagoConfig.setAccessToken(AccessToken);
+		MercadoPagoConfig.setIntegratorId(integratorId);
 		 ObjectMapper mapper = new ObjectMapper();
          String json = mapper.writeValueAsString(dto);
          log.info("Notificacion:");
