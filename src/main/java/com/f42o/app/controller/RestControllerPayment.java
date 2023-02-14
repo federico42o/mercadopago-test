@@ -1,50 +1,42 @@
 package com.f42o.app.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.f42o.app.dto.PreferenceDTO;
-import com.f42o.app.services.PreferenceService;
+import com.f42o.app.services.PreferenceServiceImpl;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.preference.Preference;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/test/v1")
 public class RestControllerPayment {
 
+	private static final Logger log = LoggerFactory.getLogger(RestControllerPayment.class);
+
 	@Autowired
-	PreferenceService preferenceService;
-	
+	PreferenceServiceImpl preferenceService;
+
+	@CrossOrigin(origins = "*")
 	@PostMapping("/create")
-	public ResponseEntity<Preference> create(@RequestBody PreferenceDTO dto) throws MPException, MPApiException{
-		
-		Preference preference = preferenceService.create(dto);
-		return ResponseEntity.ok().body(preference);
-		
-		
+	public ResponseEntity<?> create(@RequestBody PreferenceDTO dto) throws MPException, MPApiException {
+
+		return ResponseEntity.status(201).body(preferenceService.create(dto));
+
 	}
-	
-	@PostMapping("/notification_url")
-	public ResponseEntity<?> notification(){
-		
-		return ResponseEntity.status(200).build();
-	}
-	
+
 
 }
-
 
 //http://localhost:8080/?
 //	collection_id=1311617794&
