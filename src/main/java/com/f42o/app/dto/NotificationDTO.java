@@ -15,7 +15,7 @@ public class NotificationDTO {
 		// TODO Auto-generated constructor stub
 	}
 	public NotificationDTO(String id, Boolean liveMode, String type, String dateCreated, String userId,
-			String apiVersion, String action, NotificationDTO data) {
+			String apiVersion, String action, NotificationDataDTO data) {
 		this.id = id;
 		this.liveMode = liveMode;
 		this.type = type;
@@ -67,15 +67,15 @@ public class NotificationDTO {
 	public void setAction(String action) {
 		this.action = action;
 	}
-	public NotificationDTO getData() {
+	public NotificationDataDTO getData() {
 		return data;
 	}
-	public void setData(NotificationDTO data) {
+	public void setData(NotificationDataDTO data) {
 		this.data = data;
 	}
 	@Override
 	public String toString() {
-		return "NotificationDataDTO [id=" + id + ", liveMode=" + liveMode + ", type=" + type + ", dateCreated="
+		return "NotificationDTO [id=" + id + ", liveMode=" + liveMode + ", type=" + type + ", dateCreated="
 				+ dateCreated + ", userId=" + userId + ", apiVersion=" + apiVersion + ", action=" + action + ", data="
 				+ data + "]";
 	}
