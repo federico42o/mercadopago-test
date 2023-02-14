@@ -46,7 +46,7 @@ public class PreferenceServiceImpl implements IPreferenceService{
 	public Preference create(PreferenceDTO dto) throws MPException, MPApiException {
 
 		MercadoPagoConfig.setAccessToken(AccessToken);
-		MercadoPagoConfig.setIntegratorId(integratorId);
+		MercadoPagoConfig.setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 
 		PreferenceClient client = new PreferenceClient();
 
