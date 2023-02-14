@@ -85,6 +85,7 @@ public class PreferenceServiceImpl implements IPreferenceService{
 				PreferencePayerRequest.builder()
 				.name(payerDto.getName())
 				.surname(payerDto.getLastName())
+				.email(payerDto.getEmail())
 				.address(AddressRequest.builder()
 						.streetName(payerDto.getAddress().getStreetName())
 						.streetNumber(payerDto.getAddress().getStreetNumber())
@@ -107,6 +108,7 @@ public class PreferenceServiceImpl implements IPreferenceService{
 				.autoReturn(dto.getAutoReturn())
 				.notificationUrl(dto.getNotificationUrl())
 				.statementDescriptor("Tienda Azul")
+				
 				.build();
 
 		return client.create(request);
