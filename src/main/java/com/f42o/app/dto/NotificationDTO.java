@@ -9,7 +9,7 @@ public class NotificationDTO {
 	private String userId;
 	private String apiVersion;
 	private String action;
-	private NotificationDTO data;
+	private NotificationDataDTO data;
 	public NotificationDTO() {
 		super();
 		// TODO Auto-generated constructor stub
