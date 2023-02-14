@@ -31,10 +31,12 @@ public class PreferenceServiceImpl {
 	private static final Logger log = LoggerFactory.getLogger(PreferenceServiceImpl.class);
 	@Value("${mercadolibre.config.accessToken}")
 	private String AccessToken;
-
+	@Value("${mercadolibre.config.integratorId}")
+	private String integratorId;
 	public Preference create(PreferenceDTO dto) throws MPException, MPApiException {
 
 		MercadoPagoConfig.setAccessToken(AccessToken);
+		MercadoPagoConfig.setIntegratorId(integratorId);
 
 		PreferenceClient client = new PreferenceClient();
 
