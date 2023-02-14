@@ -16,9 +16,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 @RequestMapping("/notification")
 public class NotificationController {
 	
-	@Autowired
+	final
 	NotificationServiceImpl notificationService;
-	
+
+	public NotificationController(NotificationServiceImpl notificationService) {
+		this.notificationService = notificationService;
+	}
+
 	@CrossOrigin(origins = "*")
 	@PostMapping()
 	public ResponseEntity<?> getNotification(@RequestBody NotificationDTO dto) throws JsonProcessingException {

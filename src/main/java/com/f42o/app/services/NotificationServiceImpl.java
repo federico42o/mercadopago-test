@@ -14,9 +14,9 @@ import com.mercadopago.MercadoPagoConfig;
 public class NotificationServiceImpl implements INotificationService{
 	private static final Logger log = LoggerFactory.getLogger(NotificationServiceImpl.class);
 	
-	@Value("${mercadolibre.config.accessToken}")
+	@Value("${ACCESS_TOKEN}")
 	private String AccessToken;
-	@Value("${mercadolibre.config.integratorId}")
+	@Value("${INTEGRATOR_ID}")
 	private String integratorId;
 	
 	@Override

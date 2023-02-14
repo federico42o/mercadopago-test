@@ -1,8 +1,6 @@
 package com.f42o.app.services;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,16 +35,17 @@ import com.mercadopago.resources.preference.PreferencePayer;
 @Service
 public class PreferenceServiceImpl implements IPreferenceService{
 	private static final Logger log = LoggerFactory.getLogger(PreferenceServiceImpl.class);
-	@Value("${mercadolibre.config.accessToken}")
+	@Value("${ACCESS_TOKEN}")
 	private String AccessToken;
-	@Value("${mercadolibre.config.integratorId}")
+	@Value("${INTEGRATOR_ID}")
 	private String integratorId;
 	
 	@Override
 	public Preference create(PreferenceDTO dto) throws MPException, MPApiException {
-
+		
+		
 		MercadoPagoConfig.setAccessToken(AccessToken);
-		MercadoPagoConfig.setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+		MercadoPagoConfig.setIntegratorId(integratorId);
 
 		PreferenceClient client = new PreferenceClient();
 
@@ -98,19 +97,22 @@ public class PreferenceServiceImpl implements IPreferenceService{
 						)
 				.build();
 
+		Map<String, Object> id = new HashMap<>();
+		id.put("integrator_id", integratorId);
 		PreferenceRequest request = PreferenceRequest.builder()
 				
 				.items(items)
 				.backUrls(backUrls)
 				.payer(payer)
 				.paymentMethods(preferencePaymentMethodsRequest)
+				.metadata(id)
 				.externalReference(dto.getExternalReference())
 				.autoReturn(dto.getAutoReturn())
 				.notificationUrl(dto.getNotificationUrl())
 				.statementDescriptor("Tienda Azul")
 				
+				
 				.build();
-
 		return client.create(request);
 	}
 
