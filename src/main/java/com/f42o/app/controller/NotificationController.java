@@ -1,6 +1,7 @@
 package com.f42o.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.f42o.app.dto.NotificationDTO;
 import com.f42o.app.services.NotificationServiceImpl;
+import com.f42o.app.wrapper.ResponseWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RestController
@@ -24,12 +26,11 @@ public class NotificationController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@PostMapping()
-	public ResponseEntity<?> getNotification(@RequestBody NotificationDTO dto) throws JsonProcessingException {
-		
-		String json = notificationService.getNotification(dto);
-		System.out.print(json);
-		return ResponseEntity.status(200).body(json);
+	@PostMapping
+	public ResponseEntity<ResponseWrapper<String>> getNotification(@RequestBody NotificationDTO dto) throws JsonProcessingException {
+        notificationService.getNotification(dto);
+        ResponseWrapper<String> response = new ResponseWrapper<>(HttpStatus.OK.value(), "Notificación recibida con éxito.", null);
+        return response.createResponse(HttpStatus.OK);
 		
 	}
 	

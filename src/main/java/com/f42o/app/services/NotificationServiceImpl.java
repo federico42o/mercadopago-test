@@ -23,7 +23,7 @@ public class NotificationServiceImpl implements INotificationService{
 	private String integratorId;
 	
 	@Override
-	public String getNotification(NotificationDTO dto) throws JsonProcessingException {
+	public void getNotification(NotificationDTO dto) throws JsonProcessingException {
 		
 		MercadoPagoConfig.setAccessToken(AccessToken);
 		MercadoPagoConfig.setIntegratorId(integratorId);
@@ -31,9 +31,7 @@ public class NotificationServiceImpl implements INotificationService{
          String json = mapper.writeValueAsString(dto);
          log.info("Notificacion:");
          log.info(json);
-		PaymentCreateRequest payment = PaymentCreateRequest.builder().paymentMethodId(dto.getData().getId()).build();
 
-		return json;
 		//handle notification here, persist, etc
 		
 	}
