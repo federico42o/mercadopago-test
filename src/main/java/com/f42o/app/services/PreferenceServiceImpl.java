@@ -14,8 +14,10 @@ import com.f42o.app.dto.PayerDTO;
 import com.f42o.app.dto.PreferenceDTO;
 import com.f42o.app.dto.PreferenceItemsDTO;
 import com.mercadopago.MercadoPagoConfig;
+import com.mercadopago.client.MercadoPagoClient;
 import com.mercadopago.client.common.AddressRequest;
 import com.mercadopago.client.common.PhoneRequest;
+import com.mercadopago.client.payment.PaymentClient;
 import com.mercadopago.client.payment.PaymentPayerRequest;
 import com.mercadopago.client.preference.PreferenceBackUrlsRequest;
 import com.mercadopago.client.preference.PreferenceClient;
@@ -26,6 +28,7 @@ import com.mercadopago.client.preference.PreferencePaymentMethodsRequest;
 import com.mercadopago.client.preference.PreferenceRequest;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
+import com.mercadopago.resources.payment.PaymentPayer;
 import com.mercadopago.resources.preference.Preference;
 
 @Service
@@ -40,17 +43,21 @@ public class PreferenceServiceImpl implements IPreferenceService {
 	public Preference create(PreferenceDTO dto) throws MPException, MPApiException {
 
 		MercadoPagoConfig.setAccessToken(AccessToken);
-		MercadoPagoConfig.setIntegratorId(integratorId);
 
+		MercadoPagoConfig.setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 		PreferenceClient client = new PreferenceClient();
 
 		List<PreferenceItemRequest> items = new ArrayList<>();
 		for (PreferenceItemsDTO preferenceItem : dto.getItems()) {
-			PreferenceItemRequest item = PreferenceItemRequest.builder().title(preferenceItem.getTitle())
-					.description(preferenceItem.getDescription()).quantity(preferenceItem.getQuantity())
-					.unitPrice(preferenceItem.getUnitPrice()).pictureUrl(preferenceItem.getPictureUrl())
-
+			PreferenceItemRequest item = PreferenceItemRequest.builder()
+					.id(preferenceItem.getId())
+					.title(preferenceItem.getTitle())
+					.description(preferenceItem.getDescription())
+					.quantity(preferenceItem.getQuantity())
+					.unitPrice(preferenceItem.getUnitPrice())
+					.pictureUrl(preferenceItem.getPictureUrl())
 					.build();
+			
 			items.add(item);
 		}
 		PreferenceBackUrlsRequest backUrls = null;
@@ -78,14 +85,20 @@ public class PreferenceServiceImpl implements IPreferenceService {
 				.build();
 		PaymentPayerRequest payer = PaymentPayerRequest.builder().email(payerDto.getEmail())
 				.lastName(payerDto.getLastName()).firstName(payerDto.getName()).build();
-
+		PaymentPayer pp = new PaymentPayer();
 		Map<String, Object> id = new HashMap<>();
 		id.put("integratorId", integratorId);
 		PreferenceRequest request = PreferenceRequest.builder()
 
-				.items(items).backUrls(backUrls).paymentMethods(preferencePaymentMethodsRequest).metadata(id)
-				.externalReference(dto.getExternalReference()).autoReturn(dto.getAutoReturn())
-				.notificationUrl(dto.getNotificationUrl()).statementDescriptor("Tienda Azul").payer(prefPayer).build();
+				.items(items)
+				.backUrls(backUrls)
+				.paymentMethods(preferencePaymentMethodsRequest)
+				.externalReference(dto.getExternalReference())
+				.autoReturn(dto.getAutoReturn())
+				.notificationUrl(dto.getNotificationUrl())
+				.statementDescriptor("Tienda Azul")
+				.payer(prefPayer)
+				.build();
 
 		return client.create(request);
 	}

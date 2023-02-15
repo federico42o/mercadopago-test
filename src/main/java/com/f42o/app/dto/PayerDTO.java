@@ -12,7 +12,7 @@ public class PayerDTO {
 	private String email;
 	private Phone phone;
 	private Address address;
-
+	
 	public PayerDTO() {
 		super();
 		// TODO Auto-generated constructor stub
