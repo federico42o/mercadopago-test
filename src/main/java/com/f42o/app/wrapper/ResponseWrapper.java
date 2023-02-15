@@ -5,13 +5,13 @@ import org.springframework.http.ResponseEntity;
 
 public class ResponseWrapper<T> {
 
-    public int status;
-    public String message;
-    public T body;
+	public int status;
+	public String message;
+	public T body;
 
-    public ResponseEntity<ResponseWrapper<T>> createResponse(HttpStatus status){
-        return new ResponseEntity<>(this, status);
-    }
+	public ResponseEntity<ResponseWrapper<T>> createResponse(HttpStatus status) {
+		return new ResponseEntity<>(this, status);
+	}
 
 	public ResponseWrapper() {
 		super();
@@ -47,6 +47,5 @@ public class ResponseWrapper<T> {
 	public void setBody(T body) {
 		this.body = body;
 	}
-    
 
 }

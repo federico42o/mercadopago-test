@@ -3,10 +3,8 @@ package com.f42o.app.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
-
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(SnakeCaseStrategy.class)
@@ -32,7 +30,8 @@ public class PreferenceDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PreferenceDTO(List<PreferenceItemsDTO> items, BackUrlsDTO backUrls, PaymentMethodDTO paymentMethods, PayerDTO payer, String externalReference, String autoReturn, String notificationUrl) {
+	public PreferenceDTO(List<PreferenceItemsDTO> items, BackUrlsDTO backUrls, PaymentMethodDTO paymentMethods,
+			PayerDTO payer, String externalReference, String autoReturn, String notificationUrl) {
 		this.items = items;
 		this.backUrls = backUrls;
 		this.paymentMethods = paymentMethods;

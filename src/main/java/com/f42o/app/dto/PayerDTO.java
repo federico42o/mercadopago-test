@@ -1,6 +1,5 @@
 package com.f42o.app.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mercadopago.resources.common.Address;
 import com.mercadopago.resources.common.Phone;
 

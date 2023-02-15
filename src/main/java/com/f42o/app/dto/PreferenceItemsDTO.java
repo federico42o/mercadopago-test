@@ -2,8 +2,6 @@ package com.f42o.app.dto;
 
 import java.math.BigDecimal;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class PreferenceItemsDTO {
 
 	private String id;
@@ -20,7 +18,8 @@ public class PreferenceItemsDTO {
 
 	}
 
-	public PreferenceItemsDTO(String id, String title, String description, Integer quantity, BigDecimal unitPrice, String pictureUrl) {
+	public PreferenceItemsDTO(String id, String title, String description, Integer quantity, BigDecimal unitPrice,
+			String pictureUrl) {
 		this.id = id;
 		this.title = title;
 		this.description = description;

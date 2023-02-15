@@ -1,7 +1,11 @@
 package com.f42o.app.dto;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(SnakeCaseStrategy.class)
 public class NotificationDTO {
-	
+
 	private String id;
 	private Boolean liveMode;
 	private String type;
@@ -10,10 +14,12 @@ public class NotificationDTO {
 	private String apiVersion;
 	private String action;
 	private NotificationDataDTO data;
+
 	public NotificationDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public NotificationDTO(String id, Boolean liveMode, String type, String dateCreated, String userId,
 			String apiVersion, String action, NotificationDataDTO data) {
 		this.id = id;
@@ -25,61 +31,76 @@ public class NotificationDTO {
 		this.action = action;
 		this.data = data;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public Boolean getLiveMode() {
 		return liveMode;
 	}
+
 	public void setLiveMode(Boolean liveMode) {
 		this.liveMode = liveMode;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	public String getDateCreated() {
 		return dateCreated;
 	}
+
 	public void setDateCreated(String dateCreated) {
 		this.dateCreated = dateCreated;
 	}
+
 	public String getUserId() {
 		return userId;
 	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	public String getApiVersion() {
 		return apiVersion;
 	}
+
 	public void setApiVersion(String apiVersion) {
 		this.apiVersion = apiVersion;
 	}
+
 	public String getAction() {
 		return action;
 	}
+
 	public void setAction(String action) {
 		this.action = action;
 	}
+
 	public NotificationDataDTO getData() {
 		return data;
 	}
+
 	public void setData(NotificationDataDTO data) {
 		this.data = data;
 	}
+
 	@Override
 	public String toString() {
 		return "NotificationDTO [id=" + id + ", liveMode=" + liveMode + ", type=" + type + ", dateCreated="
 				+ dateCreated + ", userId=" + userId + ", apiVersion=" + apiVersion + ", action=" + action + ", data="
 				+ data + "]";
 	}
-	
-	
-	
+
 }

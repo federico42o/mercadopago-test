@@ -23,7 +23,8 @@ public class PaymentMethodDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PaymentMethodDTO(List<PreferencePaymentMethodRequest> excludedPaymentMethods, List<PreferencePaymentTypeRequest> excludedPaymentTypes, int installments) {
+	public PaymentMethodDTO(List<PreferencePaymentMethodRequest> excludedPaymentMethods,
+			List<PreferencePaymentTypeRequest> excludedPaymentTypes, int installments) {
 		this.excludedPaymentMethods = excludedPaymentMethods;
 		this.excludedPaymentTypes = excludedPaymentTypes;
 		this.installments = installments;

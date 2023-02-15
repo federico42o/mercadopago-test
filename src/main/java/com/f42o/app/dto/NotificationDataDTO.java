@@ -1,7 +1,7 @@
 package com.f42o.app.dto;
 
 public class NotificationDataDTO {
-	
+
 	private String id;
 
 	public NotificationDataDTO() {
@@ -21,9 +21,4 @@ public class NotificationDataDTO {
 		this.id = id;
 	}
 
-
-	
-	
-	
-	
 }
