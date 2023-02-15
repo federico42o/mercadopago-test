@@ -7,6 +7,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface INotificationService {
 	
-	public void getNotification(NotificationDTO dto) throws JsonProcessingException;
+	public String getNotification(NotificationDTO dto) throws JsonProcessingException;
 
 }

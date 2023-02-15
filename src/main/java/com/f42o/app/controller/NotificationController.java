@@ -27,9 +27,9 @@ public class NotificationController {
 	@PostMapping()
 	public ResponseEntity<?> getNotification(@RequestBody NotificationDTO dto) throws JsonProcessingException {
 		
-		notificationService.getNotification(dto);
-		
-		return ResponseEntity.status(200).build();
+		String json = notificationService.getNotification(dto);
+		System.out.print(json);
+		return ResponseEntity.status(200).body(json);
 		
 	}
 	

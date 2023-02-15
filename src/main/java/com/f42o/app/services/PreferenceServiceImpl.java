@@ -57,6 +57,7 @@ public class PreferenceServiceImpl implements IPreferenceService{
 					.quantity(preferenceItem.getQuantity())
 					.unitPrice(preferenceItem.getUnitPrice())
 					.pictureUrl(preferenceItem.getPictureUrl())
+
 					.build();
 			items.add(item);
 		}
@@ -78,7 +79,8 @@ public class PreferenceServiceImpl implements IPreferenceService{
 		PreferencePaymentMethodsRequest preferencePaymentMethodsRequest = PreferencePaymentMethodsRequest.builder()
 				.installments(dto.getPaymentMethods().getInstallments())
 				.excludedPaymentMethods(excludedPaymentMethods).build();
-		
+
+
 		PayerDTO payerDto = dto.getPayer();
 		PreferencePayerRequest payer = 
 				PreferencePayerRequest.builder()
@@ -98,7 +100,7 @@ public class PreferenceServiceImpl implements IPreferenceService{
 				.build();
 
 		Map<String, Object> id = new HashMap<>();
-		id.put("integrator_id", integratorId);
+		id.put("integratorId", integratorId);
 		PreferenceRequest request = PreferenceRequest.builder()
 				
 				.items(items)
@@ -110,9 +112,11 @@ public class PreferenceServiceImpl implements IPreferenceService{
 				.autoReturn(dto.getAutoReturn())
 				.notificationUrl(dto.getNotificationUrl())
 				.statementDescriptor("Tienda Azul")
-				
-				
 				.build();
+
+
+
+
 		return client.create(request);
 	}
 

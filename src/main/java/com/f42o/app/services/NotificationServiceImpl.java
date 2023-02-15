@@ -1,5 +1,8 @@
 package com.f42o.app.services;
 
+import com.mercadopago.client.MercadoPagoClient;
+import com.mercadopago.client.payment.PaymentCreateRequest;
+import com.mercadopago.resources.paymentmethod.PaymentMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +23,7 @@ public class NotificationServiceImpl implements INotificationService{
 	private String integratorId;
 	
 	@Override
-	public void getNotification(NotificationDTO dto) throws JsonProcessingException {
+	public String getNotification(NotificationDTO dto) throws JsonProcessingException {
 		
 		MercadoPagoConfig.setAccessToken(AccessToken);
 		MercadoPagoConfig.setIntegratorId(integratorId);
@@ -28,7 +31,9 @@ public class NotificationServiceImpl implements INotificationService{
          String json = mapper.writeValueAsString(dto);
          log.info("Notificacion:");
          log.info(json);
-		
+		PaymentCreateRequest payment = PaymentCreateRequest.builder().paymentMethodId(dto.getData().getId()).build();
+
+		return json;
 		//handle notification here, persist, etc
 		
 	}
