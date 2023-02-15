@@ -44,7 +44,7 @@ public class PreferenceServiceImpl implements IPreferenceService {
 
 		MercadoPagoConfig.setAccessToken(AccessToken);
 
-		MercadoPagoConfig.setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+
 		PreferenceClient client = new PreferenceClient();
 
 		List<PreferenceItemRequest> items = new ArrayList<>();

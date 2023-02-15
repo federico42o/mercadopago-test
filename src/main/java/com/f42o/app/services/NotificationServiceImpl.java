@@ -16,8 +16,7 @@ public class NotificationServiceImpl implements INotificationService {
 
 	@Value("${ACCESS_TOKEN}")
 	private String AccessToken;
-	@Value("${INTEGRATOR_ID}")
-	private String integratorId;
+
 
 	@Override
 	public void getNotification(NotificationDTO dto) throws JsonProcessingException {
@@ -25,13 +24,13 @@ public class NotificationServiceImpl implements INotificationService {
 		if(dto.getType() != null &&  dto.getType().equals("payment")) {
 		try {
 			MercadoPagoConfig.setAccessToken(AccessToken);
-			MercadoPagoConfig.setIntegratorId(integratorId);
+
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(dto);
 			log.info("Notificacion:");
 			log.info(json);
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			e.printStackTrace();
 		}
 		}

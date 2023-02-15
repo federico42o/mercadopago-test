@@ -1,5 +1,6 @@
 package com.f42o.app.wrapper;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -9,7 +10,7 @@ public class ResponseWrapper<T> {
 	public String message;
 	public T body;
 
-	public ResponseEntity<ResponseWrapper<T>> createResponse(HttpStatus status) {
+	public ResponseEntity<ResponseWrapper<T>> createResponse(HttpHeaders headers, HttpStatus status) {
 		return new ResponseEntity<>(this, status);
 	}
 
