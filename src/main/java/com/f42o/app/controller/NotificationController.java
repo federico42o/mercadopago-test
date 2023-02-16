@@ -14,6 +14,7 @@ import com.f42o.app.dto.NotificationDTO;
 import com.f42o.app.services.NotificationServiceImpl;
 import com.f42o.app.wrapper.ResponseWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.mercadopago.MercadoPagoConfig;
 import com.mercadopago.net.Headers;
 
 @RestController
@@ -32,12 +33,13 @@ public class NotificationController {
 	@PostMapping
 	public ResponseEntity<ResponseWrapper<String>> getNotification(@RequestBody NotificationDTO dto)
 			throws JsonProcessingException {
+		MercadoPagoConfig.setIntegratorId(integratorId);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(Headers.INTEGRATOR_ID, "dev_24c65fb163bf11ea96500242ac130004");
 		notificationService.getNotification(dto);
 		ResponseWrapper<String> response = new ResponseWrapper<>(HttpStatus.OK.value(),
 				"Notificación recibida con éxito.", null);
-		return response.createResponse(headers, HttpStatus.OK);
+		return response.createResponse(HttpStatus.OK);
 
 	}
 

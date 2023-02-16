@@ -10,7 +10,7 @@ public class ResponseWrapper<T> {
 	public String message;
 	public T body;
 
-	public ResponseEntity<ResponseWrapper<T>> createResponse(HttpHeaders headers, HttpStatus status) {
+	public ResponseEntity<ResponseWrapper<T>> createResponse(HttpStatus status) {
 		return new ResponseEntity<>(this, status);
 	}
 

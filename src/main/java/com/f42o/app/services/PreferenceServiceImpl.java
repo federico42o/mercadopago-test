@@ -26,8 +26,10 @@ import com.mercadopago.client.preference.PreferencePayerRequest;
 import com.mercadopago.client.preference.PreferencePaymentMethodRequest;
 import com.mercadopago.client.preference.PreferencePaymentMethodsRequest;
 import com.mercadopago.client.preference.PreferenceRequest;
+import com.mercadopago.core.MPRequestOptions;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
+import com.mercadopago.net.Headers;
 import com.mercadopago.resources.payment.PaymentPayer;
 import com.mercadopago.resources.preference.Preference;
 
@@ -46,7 +48,14 @@ public class PreferenceServiceImpl implements IPreferenceService {
 
 
 		PreferenceClient client = new PreferenceClient();
+	    Map<String, String> customHeaders = new HashMap<>();
+	    customHeaders.put(Headers.INTEGRATOR_ID, integratorId);
 
+	    MPRequestOptions requestOptions =
+	        MPRequestOptions.builder()
+	            .customHeaders(customHeaders)
+	            .build();
+		
 		List<PreferenceItemRequest> items = new ArrayList<>();
 		for (PreferenceItemsDTO preferenceItem : dto.getItems()) {
 			PreferenceItemRequest item = PreferenceItemRequest.builder()
@@ -95,12 +104,14 @@ public class PreferenceServiceImpl implements IPreferenceService {
 				.paymentMethods(preferencePaymentMethodsRequest)
 				.externalReference(dto.getExternalReference())
 				.autoReturn(dto.getAutoReturn())
-				.notificationUrl(dto.getNotificationUrl())
+//				.notificationUrl(dto.getNotificationUrl())
+				.notificationUrl("https://163c-190-137-55-233.sa.ngrok.io/notification")
 				.statementDescriptor("Tienda Azul")
 				.payer(prefPayer)
+				
 				.build();
 
-		return client.create(request);
+		return client.create(request,requestOptions);
 	}
 
 }

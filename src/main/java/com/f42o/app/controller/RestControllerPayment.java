@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.f42o.app.dto.PreferenceDTO;
 import com.f42o.app.services.PreferenceServiceImpl;
+import com.mercadopago.MercadoPagoConfig;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.net.Headers;
@@ -29,6 +30,7 @@ public class RestControllerPayment {
 	@CrossOrigin(origins = "*")
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody PreferenceDTO dto) throws MPException, MPApiException {
+		MercadoPagoConfig.setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(Headers.INTEGRATOR_ID, "dev_24c65fb163bf11ea96500242ac130004");
 		return ResponseEntity.status(201).headers(headers).body(preferenceService.create(dto));
