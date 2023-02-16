@@ -104,8 +104,8 @@ public class PreferenceServiceImpl implements IPreferenceService {
 				.paymentMethods(preferencePaymentMethodsRequest)
 				.externalReference(dto.getExternalReference())
 				.autoReturn(dto.getAutoReturn())
-//				.notificationUrl(dto.getNotificationUrl())
-				.notificationUrl("https://163c-190-137-55-233.sa.ngrok.io/notification")
+				.notificationUrl(dto.getNotificationUrl())
+//				.notificationUrl("https://163c-190-137-55-233.sa.ngrok.io/notification")
 				.statementDescriptor("Tienda Azul")
 				.payer(prefPayer)
 				
